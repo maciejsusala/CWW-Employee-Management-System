@@ -2,8 +2,6 @@ package pl.maciejsusala;
 
 public class Main {
     public static void main(String[] args) {
-//        Utwórz kilka pracowników różnych klas (Employee, SalariedEmployee, HourlyEmployee).
-//        Przypisz im różne wartości dla pól, takie jak baseSalary, bonus, hoursWorked, hourlyRate, overtimeRate, itd. Wykorzystaj przy tym różne konstruktory.
 
         Employee employee1 = new Employee("Bartek", 1990, 2550);
 
@@ -12,5 +10,28 @@ public class Main {
         SalariedEmployee salariedEmployee2 = new SalariedEmployee("Tymonodeusz", 1870, 5500); // bonus za seniority ;)
 
         HourlyEmployee hourlyEmployee1 = new HourlyEmployee("Błażej", 2003, 170, 50, 1.5);
+
+        HourlyEmployee hourlyEmployee2 = new HourlyEmployee("Andrzej", 1992, 150, 50, 1.5);
+
+
+
+        Employee[] employeesArray = {employee1, salariedEmployee1, salariedEmployee2, hourlyEmployee1, hourlyEmployee2};
+
+        Bookkeeping.printAllPayments(employeesArray);
+        System.out.println();
+        System.out.println();
+
+
+        System.out.println("Wiek Barka to: " + employee1.getAge());
+        System.out.println();
+        System.out.println();
+
+
+        salariedEmployee1.addBonus(500);
+        salariedEmployee2.addBonus(400);
+
+        hourlyEmployee1.addHoursWorked(20);
+        hourlyEmployee2.addHoursWorked(50);
+        Bookkeeping.printAllPayments(employeesArray);
     }
 }

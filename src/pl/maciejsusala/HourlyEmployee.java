@@ -1,6 +1,6 @@
 package pl.maciejsusala;
 
-public class HourlyEmployee extends Employee{
+public class HourlyEmployee extends Employee {
     private int hoursWorked;
     private double hourlyRate;
     private double overtimeRate;
@@ -12,7 +12,7 @@ public class HourlyEmployee extends Employee{
         this.overtimeRate = overtimeRate;
     }
 
-    public void addHoursWorked(int hours){
+    public void addHoursWorked(int hours) {
         this.hoursWorked = hoursWorked + hours;
     }
 
@@ -37,23 +37,28 @@ public class HourlyEmployee extends Employee{
     }
 
     @Override
-    public double calculatePay(){
+    public double calculatePay() {
         return getBaseSalary() + salaryForHours();
     }
 
-    private double salaryForHours(){
-        if(hoursWorked <= 160){
-            return hoursWorked * hourlyRate;
-        } else {
-            return calculateSalaryForStandardHours() + calculateBonusForOvertime();
-        }
+    public double getSalaryForStandardHours() {
+        return calculateSalaryForStandardHours();
     }
-    private double calculateSalaryForStandardHours(){
+
+    public double getBonusForOvertime() {
+        return calculateBonusForOvertime();
+    }
+
+    private double salaryForHours() {
+        return calculateSalaryForStandardHours() + calculateBonusForOvertime();
+    }
+
+    private double calculateSalaryForStandardHours() {
         return hourlyRate * 160;
     }
 
-    private double calculateBonusForOvertime(){
-        return (hoursWorked - 160) * overtimeRate * hourlyRate;
+    private double calculateBonusForOvertime() {
+        return (hoursWorked > 160) ? (hoursWorked - 160) * overtimeRate * hourlyRate : 0;
     }
 
     @Override
